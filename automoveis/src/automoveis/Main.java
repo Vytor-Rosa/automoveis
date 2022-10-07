@@ -14,9 +14,9 @@ public class Main {
 	static ArrayList<Pessoa> listaPessoas = new ArrayList<Pessoa>();
 	static PessoaController controller = new PessoaController();
 	public static Pessoa usuario;
-
+ 
 	public static void main(String[] args) throws SQLException {
-		Dono dono1 = new Dono("Vytor", "123", "999.999.999-00", 1, 17, "clÛvis");
+		Dono dono1 = new Dono("Vytor", "123", "999.999.999-00", 1, 17, "cl√≥vis");
 		listaPessoas.add(dono1);
 		
 		login();
@@ -49,7 +49,7 @@ public class Main {
 	}
 	
 	private static void menu() throws SQLException {
-		System.out.println("1- menu Pessoa; \n2- menu AutomÛveis");
+		System.out.println("1- menu Pessoa; \n2- menu Autom√≥veis");
 		int opcao = tec.nextInt();
 		switch (opcao) {
 		case 1:
@@ -139,7 +139,7 @@ public class Main {
 		System.out.println("matricula: ");
 		int matricula = tec.nextInt();
 
-			System.out.println("1- sim; \n2- n„o");
+			System.out.println("1- sim; \n2- n√£o");
 			System.out.println("Deseja realmente excluir esse usuario: ");
 			System.out.println(controller.selecionarPorMatricula(matricula));
 			int escolha = tec.nextInt();
