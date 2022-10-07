@@ -89,7 +89,7 @@ public class Main {
 		
 		int indice = -1;
 		
-		System.out.println("1- dono; \2- cliente");
+		System.out.println("1- dono; \n2- cliente.");
 		int opcao = tec.nextInt();
 		System.out.println("matricula: ");
 		int matricula = tec.nextInt();
