@@ -17,4 +17,7 @@ public class PessoaFactory {
         }
     }
 
+    public Pessoa getPessoas(String nome, String senha, String cpf, Integer matricula, Integer idade) {
+        return new Pessoa(nome, senha, cpf, matricula, idade);
+    }
 }

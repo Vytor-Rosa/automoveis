@@ -1,28 +1,16 @@
 package br.senai.sc.automoveis.model.entities;
 
 public class Dono extends Pessoa{
-	String aaa;
+	String concessionaria;
 
 	@Override
 	public String toString() {
-		return super.toString() + "\naaa: " + aaa;
-	}
-
-	public String getAaa() {
-		return aaa;
-	}
-
-	public void setAaa(String aaa) {
-		this.aaa = aaa;
+		return super.toString() + "\nconcessionaria: " + concessionaria;
 	}
 
 	public Dono(String nome, String senha, String cpf, int matricula, int idade, String aaa) {
 		super(nome, senha, cpf, matricula, idade);
-		this.aaa = aaa;
-	}
-
-	public Dono() {
-		super();
+		this.concessionaria = aaa;
 	}
 
 	public Dono(String nome, String senha, String cpf, int matricula, int idade) {

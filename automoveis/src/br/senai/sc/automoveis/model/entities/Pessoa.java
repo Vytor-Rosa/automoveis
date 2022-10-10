@@ -1,7 +1,7 @@
 package br.senai.sc.automoveis.model.entities;
 
-import automoveis.Main;
-import br.senai.sc.automoveis.model.factory.PessoaFactory;
+import automoveis.*;
+import br.senai.sc.automoveis.model.factory.*;
 
 public class Pessoa {
 	String nome, senha, cpf;
@@ -22,35 +22,24 @@ public class Pessoa {
 		return new PessoaFactory().getPessoas(nome, senha, cpf, matricula, idade, tipo);
 	}
 
+	public static Pessoa editar(String nome, String senha, String cpf, Integer matricula, Integer idade){
+			return new PessoaFactory().getPessoas(nome, senha, cpf, matricula, idade);
+	}
+
 	public String getNome() {
 		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 	public String getSenha() {
 		return senha;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
 	public String getCpf() {
 		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 	public int getMatricula() {
 		return matricula;
 	}
-	public void setMatricula(int matricula) {
-		this.matricula = matricula;
-	}
 	public int getIdade() {
 		return idade;
-	}
-	public void setIdade(int idade) {
-		this.idade = idade;
 	}
 
 	public Pessoa(String nome, String senha, String cpf, int matricula, int idade) {
@@ -60,9 +49,6 @@ public class Pessoa {
 		this.cpf = cpf;
 		this.matricula = matricula;
 		this.idade = idade;
-	}
-	public Pessoa() {
-		super();
 	}
 	
 }

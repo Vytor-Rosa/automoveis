@@ -23,4 +23,12 @@ public class PessoaService {
     public Set<Pessoa> selecionarTodos() throws SQLException{
         return new PessoaDAO().selecionarTodos();
     }
+
+    public Set<Pessoa> selecionarPorTipo(Integer tipo) throws SQLException{
+        return new PessoaDAO().selecionarPorTipo(tipo);
+    }
+
+    public void editar(Integer matricula, Pessoa pessoa) throws SQLException{
+        new PessoaDAO().editar(matricula, pessoa);
+    }
 }

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConexaoFactory {
-    private String url = "jdbc:mysql://localhost:3306/mydb";
+    private String url = "jdbc:mysql://localhost:3306/automoveis";
     private String username = "root";
     private String password = "root";
     public Connection conectaDB() {

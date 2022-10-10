@@ -1,10 +1,7 @@
 package br.senai.sc.automoveis.model.dao;
 
-import br.senai.sc.automoveis.model.entities.Cliente;
-import br.senai.sc.automoveis.model.entities.Funcionario;
-import br.senai.sc.automoveis.model.entities.Pessoa;
-import br.senai.sc.automoveis.model.factory.ConexaoFactory;
-import br.senai.sc.automoveis.model.factory.PessoaFactory;
+import br.senai.sc.automoveis.model.entities.*;
+import br.senai.sc.automoveis.model.factory.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,6 +17,11 @@ public class PessoaDAO {
         this.connection = new ConexaoFactory().conectaDB();
     }
 
+    /**
+     *
+     * @param pessoa
+     * @throws SQLException
+     */
     public void inserir(Pessoa pessoa) throws SQLException {
         String sql = "insert into pessoa(nome, senha, cpf, matricula, idade, tipo) values (?,?,?,?,?,?)";
         System.out.println("entrou");
@@ -41,6 +43,37 @@ public class PessoaDAO {
         }
     }
 
+    /**
+     *
+     * @param matricula
+     * @param pessoa
+     * @throws SQLException
+     */
+    public void editar(Integer matricula, Pessoa pessoa) throws SQLException {
+        String sql = "update pessoa set nome = (?), senha = (?), cpf = (?), matricula = (?), idade = (?) where matricula = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, pessoa.getNome());
+            statement.setString(2, pessoa.getSenha());
+            statement.setString(3, pessoa.getCpf());
+            statement.setInt(4, pessoa.getMatricula());
+            statement.setInt(5, pessoa.getIdade());
+            statement.setInt(6, matricula);
+            try {
+                statement.execute();
+            } catch (Exception exception) {
+                throw new RuntimeException(exception);
+            }
+        } catch (Exception exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    /**
+     *
+     * @param matricula
+     * @return
+     * @throws SQLException
+     */
     public Pessoa selecionarPorMatricula(Integer matricula) throws SQLException {
         String sql = "select * from pessoa where matricula = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -59,6 +92,11 @@ public class PessoaDAO {
         }
     }
 
+    /**
+     *
+     * @param matricula
+     * @throws SQLException
+     */
     public void excluir(Integer matricula) throws SQLException {
         String sql = "delete from pessoa where matricula = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -73,6 +111,11 @@ public class PessoaDAO {
         }
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public Set<Pessoa> selecionarTodos() throws SQLException {
         String sql = "select * from pessoa";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -89,7 +132,34 @@ public class PessoaDAO {
         }
     }
 
+    /**
+     *
+     * @param tipo
+     * @return
+     * @throws SQLException
+     */
+    public Set<Pessoa> selecionarPorTipo(Integer tipo) throws SQLException{
+        String sql = "select * from pessoa where tipo = ?";
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, tipo);
+            try(ResultSet resultSet = statement.executeQuery()){
+                while(resultSet.next()){
+                    listaPessoas.add(extrairObjeto(resultSet));
+                }
+                return listaPessoas;
+            }catch (Exception exception){
+                throw new RuntimeException(exception);
+            }
+        }catch (Exception exception){
+            throw new RuntimeException(exception);
+        }
+    }
 
+    /**
+     *
+     * @param resultSet
+     * @return
+     */
     private Pessoa extrairObjeto(ResultSet resultSet) {
         try{
             return new PessoaFactory().getPessoas(
@@ -103,9 +173,5 @@ public class PessoaDAO {
         }catch (Exception exception){
             throw new RuntimeException();
         }
-    }
-
-
-    public void editar(Integer matricula) throws SQLException{
     }
 }
