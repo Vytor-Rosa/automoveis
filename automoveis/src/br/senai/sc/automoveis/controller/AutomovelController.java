@@ -19,7 +19,7 @@ public class AutomovelController {
     }
 
     public void editar(Integer codigo, String marca, String modelo, String tipo) throws SQLException {
-        AutomovelService service = new AutomovelService();
+        AutomovelService service = new AutomovelService(); 
         Automovel automovel = Automovel.editar(marca, modelo, codigo, tipo);
         service.editar(codigo, automovel);
     }
